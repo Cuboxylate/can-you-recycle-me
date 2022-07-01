@@ -11,16 +11,19 @@
             <canvas ref="canvas" style="display: none;" />
             <button class="CameraSnap__button" @click="takePicture()">Take picture</button>
 
-            <label for="postcode">Postcode:</label>
-            <input
-                type="text"
-                id="postcode"
-                name="postcode"
-                required
-                minlength="4"
-                maxlength="8"
-                class="CameraSnap__input">
-            <button @click="getResults()">Get info</button>
+            <div class="CameraSnap__location-input">
+                <label for="postcode">Postcode:</label>
+                <input
+                    type="text"
+                    id="postcode"
+                    name="postcode"
+                    required
+                    minlength="4"
+                    maxlength="8"
+                    class="CameraSnap__input">
+            </div>
+
+            <button class="CameraSnap__button" @click="getResults()">Get info</button>
 
             <div id="results">
                 <p>Your item has been identifed as: <strong>Plastics type 2</strong></p>
@@ -110,11 +113,14 @@ export default {
     width: 40%;
     height: 30px;
     margin: 20px auto;
+    background-color: #52bdbf;
+    border: 1px solid #067b7d;
+    border-radius: 5px;
 }
 
 .CameraSnap__input {
     margin: 10px;
-    width: 40%;
+    width: 60%;
 }
 
 .CameraSnap__paragraph {
@@ -125,6 +131,10 @@ export default {
 
 .CameraSnap__video {
     margin-top: 30px;
+}
+
+.CameraSnap__location-input {
+    margin: 0 auto;
 }
 
 </style>
