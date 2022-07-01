@@ -1,11 +1,19 @@
 <template>
-  <div id="camera">
-    <CameraSnapVue />
-  </div>
+<div id="camera">
+  <CameraSnapVue />
+</div>
 </template>
  
 <script>
     import CameraSnapVue from './components/CameraSnap.vue';
+ 
+    export default {
+        name: "Camera",
+        components: {
+            CameraSnapVue
+        },
+        
+    }
 </script>
  
 <style scoped>
