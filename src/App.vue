@@ -1,5 +1,8 @@
 <template>
-    <div class="camera-box">
+<div id="camera">
+  <CameraSnapVue />
+</div>
+    <!-- <div class="camera-box">
         <div style="display: flex; justify-content: center;">
             <img style="height: 25px;" v-if="isCameraOpen"
                  src="https://img.icons8.com/material-outlined/50/000000/camera--v2.png"
@@ -23,17 +26,19 @@
             </div>
         </div>
         <vue-picture-swipe :items="items"></vue-picture-swipe>
-    </div>
+    </div> -->
 </template>
  
 <script>
     // import VuePictureSwipe from 'vue-picture-swipe';
+
+    import CameraSnapVue from './components/CameraSnap.vue';
  
     export default {
         name: "Camera",
-        // components: {
-        //     VuePictureSwipe
-        // },
+        components: {
+            CameraSnapVue
+        },
         data() {
             return {
                 isCameraOpen: false,
@@ -87,6 +92,13 @@
                     self.stopCameraStream();
                 }, FLASH_TIMEOUT);
             },
+
+            sCameraStream() {
+                let tracks = this.$refs.camera.srcObject.getTracks();
+                tracks.forEach(track => {
+                    track.stop();
+                });
+            },
  
             // addToPhotoGallery(dataURI) {
             //     this.items.push(
@@ -110,22 +122,22 @@
             //     // })
             // },
  
-            generateCapturePhotoName(){
-                return  Math.random().toString(36).substring(2, 15)
-            },
+            // generateCapturePhotoName(){
+            //     return  Math.random().toString(36).substring(2, 15)
+            // },
  
-            dataURLtoFile(dataURL, filename) {
-                let arr = dataURL.split(','),
-                    mime = arr[0].match(/:(.*?);/)[1],
-                    bstr = atob(arr[1]),
-                    n = bstr.length,
-                    u8arr = new Uint8Array(n);
+            // dataURLtoFile(dataURL, filename) {
+            //     let arr = dataURL.split(','),
+            //         mime = arr[0].match(/:(.*?);/)[1],
+            //         bstr = atob(arr[1]),
+            //         n = bstr.length,
+            //         u8arr = new Uint8Array(n);
  
-                while (n--) {
-                    u8arr[n] = bstr.charCodeAt(n);
-                }
-                return new File([u8arr], filename, {type: mime});
-            },
+            //     while (n--) {
+            //         u8arr[n] = bstr.charCodeAt(n);
+            //     }
+            //     return new File([u8arr], filename, {type: mime});
+            // },
         }
     }
 </script>
