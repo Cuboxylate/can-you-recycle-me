@@ -1,12 +1,11 @@
 <template>
     <div>
-        <div>
-            <h2>Gomeco Vision</h2>
-            <video ref="video">Stream unavailable</video>
-        </div>
         <div class="CameraSnap">
         <h2>Camera Snap Component</h2>
-        <button class="CameraSnap__button">Take picture</button>
+        <video ref="video" @canplay="initCanvas()">Stream unavailable</video>
+        <canvas ref="canvas" style="display: none;" />
+
+        <button class="CameraSnap__button" @click="takePicture()">Take picture</button>
         <label for="postcode">Postcode:</label>
         <input
             type="text"
@@ -29,6 +28,7 @@
 export default {
     name: "CameraSnap",
     mounted() {
+        this.canvas = this.$refs.canvas
         this.video = this.$refs.video
         this.startCapture()
     },
@@ -52,7 +52,21 @@ export default {
             } else {
                 x.style.display = "none";
             }
+        },
+
+        initCanvas() {
+            console.log("Init canvas")
+            this.canvas.setAttribute('width', this.video.videoWidth)
+            this.canvas.setAttribute('height', this.video.videoHeight)
+        },
+
+        takePicture() {
+            let context = this.canvas.getContext('2d')
+            context.drawImage(this.video, 0, 0, this.video.videoWidth, this.video.videoHeight)
+            this.$emit('picture-taken', this.canvas.toDataURL('image/png'))
         }
+
+
     },
 
     data() {

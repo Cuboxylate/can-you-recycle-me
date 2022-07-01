@@ -1,6 +1,11 @@
 <template>
-<div id="camera">
-  <CameraSnapVue />
+<div>
+  <h2>Gomeco Vision</h2>
+            
+  <div id="camera">
+    <CameraSnapVue @picture-taken="imgSrc = $event"/>
+    <img :src="imgSrc" />
+  </div>
 </div>
 </template>
  
@@ -12,6 +17,11 @@
         components: {
             CameraSnapVue
         },
+        data() {
+          return {
+            imgSrc: null
+          }
+        }
         
     }
 </script>
