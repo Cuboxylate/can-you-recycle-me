@@ -26,15 +26,22 @@
             <button class="CameraSnap__button" @click="getResults()">Get info</button>
 
             <div id="results">
-                <p>Your item has been identifed as: <strong>Plastics type 2</strong></p>
-                <h2>How to dispose of this item</h2>
-                <h3>Preparation</h3>
-                <p>Please wash well.</p>
-                <h3>Where to put this item</h3>
-                <p>This item can be added to your council's kerbside recycling bin.</p>
-                <h3>What will happen next?</h3>
-                <p>This plastic will be melted down and used to make new bottles, reducing our need to extract and refine crude oil.</p>
-                <p>Thank you!</p>
+                <p class="CameraSnap__text">Your item has been identifed as:</p>
+                <p class="CameraSnap__text"><strong>Plastics type 2</strong></p>
+                <h2 class="CameraSnap__text">How to dispose of this item</h2>
+                <div class="CameraSnap__response-box">
+                    <h3>1. Preparation</h3>
+                    <p class="CameraSnap__respose-paragraph">Please wash well.</p>
+                </div>
+                <div class="CameraSnap__response-box">
+                    <h3>2. Where to put this item</h3>
+                    <p class="CameraSnap__respose-paragraph">This item can be added to your council's kerbside recycling bin.</p>
+                </div>
+                <div class="CameraSnap__response-box">
+                    <h3>3. What will happen next?</h3>
+                    <p class="CameraSnap__respose-paragraph">This plastic will be melted down and used to make new bottles, reducing our need to extract and refine crude oil.</p>
+                </div>
+                <p class="CameraSnap__thanks"><strong>Thank you!</strong></p>
             </div>
         </div>
     </div>
@@ -113,8 +120,8 @@ export default {
     width: 40%;
     height: 30px;
     margin: 20px auto;
-    background-color: #52bdbf;
-    border: 1px solid #067b7d;
+    background-color: #87e378;
+    border: 1px solid #299416;
     border-radius: 5px;
 }
 
@@ -135,6 +142,27 @@ export default {
 
 .CameraSnap__location-input {
     margin: 0 auto;
+}
+
+.CameraSnap__respose-paragraph {
+    padding-left: 5%;
+}
+
+.CameraSnap__response-box {
+    border: 1px solid #299416;
+    margin: 10px;
+    padding: 20px;
+}
+
+.CameraSnap__thanks {
+    color: #299416;
+    font-size: 24px;
+    font-weight: 1000;
+    text-align: center;
+}
+
+.CameraSnap__text {
+    text-align: center;
 }
 
 </style>
