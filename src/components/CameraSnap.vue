@@ -1,8 +1,13 @@
 <template>
     <div>
+        <div>
+             <img class="CameraSnap__logo" src="@/assets/Gomeco-logo.png" alt="logo" />
+        </div>
+        <p class="CameraSnap__paragraph">
+            Scan your item's recycling logo and enter your postcode to find out how to responsibly dispose of it!
+        </p>
         <div class="CameraSnap">
-            <h2>Camera Snap Component</h2>
-            <video ref="video" @canplay="initCanvas()">Stream unavailable</video>
+            <video class="CameraSnap__video" ref="video" @canplay="initCanvas()">Stream unavailable</video>
             <canvas ref="canvas" style="display: none;" />
             <button class="CameraSnap__button" @click="takePicture()">Take picture</button>
 
@@ -35,6 +40,14 @@
 <script>
 export default {
     name: "CameraSnap",
+
+    data() {
+        return {
+            video: null,
+            image: null
+        }
+    },
+
     mounted() {
         this.canvas = this.$refs.canvas
         this.video = this.$refs.video
@@ -54,6 +67,7 @@ export default {
                 console.log(error)
             })
         },
+
         getResults() {
             var x = document.getElementById("results");
             x.style.display = x.style.display === "none" ? "block" : "none"
@@ -68,18 +82,13 @@ export default {
         takePicture() {
             let context = this.canvas.getContext('2d')
             context.drawImage(this.video, 0, 0, this.video.videoWidth, this.video.videoHeight)
-            this.$emit('picture-taken', this.canvas.toDataURL('image/png'))
+            this.image = this.canvas.toDataURL('image/png')
+            this.video.style.display = "none"
+            this.canvas.style.display = "block"
+            this.canvas.srcObject = this.image
         }
-
 
     },
-
-    data() {
-        return {
-            video: null
-        }
-    }
-    
 
 }
 </script>
@@ -92,14 +101,30 @@ export default {
     margin: 0 auto;
 }
 
+.CameraSnap__logo {
+    width: 15%;
+    min-width: 200px;
+}
+
 .CameraSnap__button {
-    margin: 10px;
-    width: 80%;
+    width: 40%;
+    height: 30px;
+    margin: 20px auto;
 }
 
 .CameraSnap__input {
     margin: 10px;
     width: 40%;
+}
+
+.CameraSnap__paragraph {
+    font-size: 24px;
+    width: 80%;
+    margin: 20px auto;
+}
+
+.CameraSnap__video {
+    margin-top: 30px;
 }
 
 </style>

@@ -1,10 +1,7 @@
 <template>
 <div>
-  <h2>Gomeco Vision</h2>
-            
   <div id="camera">
-    <CameraSnapVue @picture-taken="imgSrc = $event"/>
-    <img :src="imgSrc" />
+    <CameraSnapVue />
   </div>
 </div>
 </template>
