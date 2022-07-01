@@ -1,12 +1,36 @@
 <template>
 <div>
-    Camera Snap Component 
+    <h2>Gomeco Vision</h2>
+    <video ref="video">Stream unavailable</video>
 </div>
 </template>
 
 <script>
 export default {
-    name: "CameraSnap"
+    name: "CameraSnap",
+    mounted() {
+        this.video = this.$refs.video
+        this.startCapture()
+    },
+
+    methods: {
+        startCapture() {
+            navigator.mediaDevices.getUserMedia({video: true, audio: false}).then(
+                stream => {
+                    this.video.srcObject = stream
+                    this.video.play()
+                }
+            ).catch( error => {
+                console.log(error)
+            })
+        }
+    },
+
+    data() {
+        return {
+            video: null
+        }
+    }
 }
 </script>
 
