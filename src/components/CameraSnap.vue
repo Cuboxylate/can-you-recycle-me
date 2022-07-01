@@ -27,7 +27,8 @@
 
             <div id="results">
                 <p class="CameraSnap__text">Your item has been identifed as:</p>
-                <p class="CameraSnap__text"><strong>Plastics type 2</strong></p>
+                <p class="CameraSnap__text"><strong class="CameraSnap__identification">Plastics type 2</strong></p>
+                <p class="CameraSnap__text"><img class="CameraSnap__verdict" src="@/assets/tick.png" alt="logo" />This item can be recycled.</p>
                 <h2 class="CameraSnap__text">How to dispose of this item</h2>
                 <div class="CameraSnap__response-box">
                     <h3>1. Preparation</h3>
@@ -149,7 +150,7 @@ export default {
 }
 
 .CameraSnap__response-box {
-    border: 1px solid #299416;
+    border: 2px solid #299416;
     margin: 10px;
     padding: 20px;
 }
@@ -163,6 +164,15 @@ export default {
 
 .CameraSnap__text {
     text-align: center;
+}
+
+.CameraSnap__identification {
+    font-size: 20px;
+}
+
+.CameraSnap__verdict {
+    width: 25px;
+    margin: 5px;
 }
 
 </style>
